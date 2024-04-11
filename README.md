@@ -4,3 +4,10 @@ Laki is a homemade browser powered by Microsoft Bing.
 https://lakibrowser.netlify.app
 
 laki is also kind of bad so please don't be mean
+
+
+
+
+
+
+<iframe src="https://lakibrowser.netlify.app/" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="400px" width="600px" allowfullscreen></iframe>
