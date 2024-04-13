@@ -3,15 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Browser</title>
-    <!-- Link tags for favicon and apple-touch-icon -->
+    <title>Laki Browser</title>
+    <!-- Link tags for favicon and Apple touch icon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <style>
-        /* Style for the header container */
-        .header-container {
+        /* Styles for the page content */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style for the search container */
+        .search-container {
             text-align: center;
             margin-bottom: 20px;
         }
@@ -20,13 +37,6 @@
         .logo {
             max-width: 100%;
             height: auto;
-        }
-
-        /* Style for the search container */
-        .search-container {
-            margin: 20px auto;
-            max-width: 400px;
-            text-align: center;
         }
 
         /* Style for the search input */
@@ -64,22 +74,23 @@
 </head>
 <body>
 
-<!-- Header container -->
-<div class="header-container">
-    <!-- Logo image -->
-    <img src="https://i.ibb.co/T0LZ9VX/Screenshot-2024-04-11-6-47-38-PM.png" alt="Logo" class="logo">
-</div>
+<div class="container">
+    <!-- Header container -->
+    <div class="search-container">
+        <!-- Logo image -->
+        <img src="https://i.ibb.co/T0LZ9VX/Screenshot-2024-04-11-6-47-38-PM.png" alt="Laki Browser Logo" class="logo">
+    </div>
 
-<!-- Search container -->
-<div class="search-container">
-    <!-- Search input -->
-    <input type="text" id="searchInput" class="search-input" placeholder="Enter your search query">
-    <!-- Search button -->
-    <button class="search-button" onclick="performSearch()">Search</button>
-</div>
+    <!-- Search container -->
+    <div class="search-container">
+        <!-- Search input -->
+        <input type="text" id="searchInput" class="search-input" placeholder="Enter your search query">
+        <!-- Search button -->
+        <button class="search-button" onclick="performSearch()">Search</button>
+    </div>
 
-<!-- Container for search results -->
-<div id="searchResultsContainer">
+    <!-- Container for search results -->
+    <div id="searchResultsContainer"></div>
 </div>
 
 <script>
