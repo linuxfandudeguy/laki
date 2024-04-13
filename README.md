@@ -8,3 +8,9 @@ laki is also kind of bad so please don't be mean
 making a bing based browser on my chromebook has to have been the stupidest idea I have ever came up with
 
 Raw (like gordon Ramsay): https://raw.githubusercontent.com/linuxfandudeguy/laki/main/index.html
+
+# Updates
+
+added a copilot
+
+added better css
