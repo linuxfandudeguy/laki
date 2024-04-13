@@ -11,6 +11,6 @@ Raw (like gordon Ramsay): https://raw.githubusercontent.com/linuxfandudeguy/laki
 
 # Updates
 
-added a copilot
-
+added a copilot ([
+](https://lakibrowser.netlify.app/copilot.html)
 added better css
