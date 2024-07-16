@@ -32,4 +32,4 @@ now has favicon support
 
 # History
 
-[First ver](https://laki-indol.vercel.app/browser.html)
+[v0.01](https://laki-indol.vercel.app/browser.html)
