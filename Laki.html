@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laki</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #nav-bar {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-bottom: 1px solid #ccc;
+        }
+        #address-bar {
+            flex-grow: 1;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .nav-button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+        #search-icon {
+            font-size: 20px;
+            color: #fff;
+            margin-right: 5px;
+        }
+        #tab-bar {
+            display: flex;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-bottom: 1px solid #ccc;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            white-space: nowrap; /* Prevent tabs from wrapping */
+        }
+        .tab {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            background-color: #fff;
+            cursor: pointer;
+            flex-shrink: 0; /* Prevent tabs from shrinking */
+            white-space: nowrap; /* Prevent tabs from wrapping */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px; /* Adjust maximum width of each tab */
+            display: flex;
+            align-items: center;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .tab.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .tab.active:hover {
+            background-color: #0056b3;
+        }
+        .tab-content-container {
+            flex-grow: 1;
+            overflow: auto; /* Enable vertical scrolling for tab content */
+        }
+        .tab-content {
+            display: none;
+            width: 100%;
+            height: calc(100vh - 100px); /* Adjust height based on nav-bar and tab-bar height */
+            border: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-close {
+            margin-left: 5px;
+            cursor: pointer;
+            color: #ccc;
+        }
+        .tab-close:hover {
+            color: #333;
+        }
+        .new-tab-content {
+            padding: 20px;
+            overflow-y: auto;
+            max-height: calc(100vh - 150px); /* Adjust max-height based on nav-bar, tab-bar, and padding */
+        }
+        .tab-favicon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="nav-bar" class="bg-white">
+        <i id="search-icon" class="fas fa-search text-blue-500"></i>
+        <form id="url-form" onsubmit="return false;" class="flex">
+            <input type="text" id="address-bar" placeholder="Enter URL" class="flex-grow p-2 mr-2 border border-gray-300 rounded-md">
+            <button id="go-button" class="nav-button bg-blue-500 text-white rounded-md">Go</button>
+            <button id="refresh-button" class="nav-button bg-blue-500 text-white rounded-md"><i class="fas fa-sync"></i></button>
+        </form>
+    </div>
+    <div id="tab-bar">
+        <div id="tab-list" class="flex"></div>
+    </div>
+    <div id="tab-content-container">
+        <!-- Default tab (hidden) -->
+        <iframe id="default-tab" class="tab-content" srcdoc="
+            <html>
+            <head>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 0;
+                        padding: 20px;
+                    }
+                    h1 {
+                        font-size: 2rem;
+                        font-weight: bold;
+                        margin-bottom: 1rem;
+                    }
+                    p {
+                        font-size: 1rem;
+                        line-height: 1.6;
+                        margin-bottom: 1rem;
+                    }
+                    ul {
+                        margin-bottom: 1rem;
+                    }
+                    li {
+                        margin-bottom: 0.5rem;
+                    }
+                    .note {
+                        font-size: 0.875rem;
+                        color: #666;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class='max-w-3xl mx-auto py-8'>
+                    <h1>Welcome to Simple Browser</h1>
+                    <p>Simple Browser is a lightweight browser application with support for multiple tabs.</p>
+                    <h2>Features:</h2>
+                    <ul>
+                        <li>Tabbed browsing</li>
+                        <li>Basic navigation (Go, Refresh)</li>
+                        <li>Custom protocol support (lak://)</li>
+                    </ul>
+                    <h2>Disadvantages:</h2>
+                    <ul>
+                        <li>CORS limitations due to iframe usage</li>
+                        <li>Basic functionality compared to mainstream browsers</li>
+                    </ul>
+                    <p class='note'>Note: This browser application is intended for educational purposes and may not fully replicate all features of modern browsers.</p>
+                </div>
+            </body>
+            </html>
+        "></iframe>
+    </div>
+
+    <script>
+        const tabList = document.getElementById('tab-list');
+        const tabContentContainer = document.getElementById('tab-content-container');
+        const addressBar = document.getElementById('address-bar');
+        const goButton = document.getElementById('go-button');
+        const refreshButton = document.getElementById('refresh-button');
+        
+        let currentTabId = 'default-tab';
+
+        // Initialize default tab
+        createTab('about:blank', 'New Tab', 'default-tab');
+
+        // Event listeners
+        goButton.addEventListener('click', navigateToURL);
+        document.getElementById('url-form').addEventListener('submit', navigateToURL);
+        refreshButton.addEventListener('click', refreshTab);
+
+        function navigateToURL(event) {
+            if (event) event.preventDefault();
+            let url = addressBar.value.trim();
+            
+            // Check if the URL starts with 'http://' or 'https://'
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                // Redirect to CORS proxy with Google search query
+                url = `https://corsproxy.io/?https://www.google.com/search?q=${encodeURIComponent(url)}`;
+            }
+            
+            createTab(url, url);
+            addressBar.value = '';
+        }
+
+        function createTab(url, title, tabId) {
+            const tab = document.createElement('div');
+            tab.classList.add('tab');
+            tab.textContent = title;
+            tab.setAttribute('data-url', url);
+            tab.setAttribute('id', tabId || `tab-${Date.now()}`);
+
+            // Create favicon element
+            const favicon = document.createElement('img');
+            favicon.classList.add('tab-favicon');
+            favicon.src = `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`;
+            tab.prepend(favicon);
+
+            // Create close button
+            const closeButton = document.createElement('span');
+            closeButton.classList.add('tab-close');
+            closeButton.innerHTML = '&times;';
+            closeButton.addEventListener('click', () => closeTab(tabId || tab.id));
+            tab.appendChild(closeButton);
+
+            tabList.appendChild(tab);
+
+            const tabContent = document.createElement('iframe');
+            tabContent.classList.add('tab-content');
+            tabContent.setAttribute('id', `content-${tabId || tab.id}`);
+            tabContent.setAttribute('src', url);
+            tabContentContainer.appendChild(tabContent);
+
+            activateTab(tab.id);
+        }
+
+        function activateTab(tabId) {
+            const activeTab = document.querySelector('.tab.active');
+            const activeContent = document.querySelector('.tab-content.active');
+
+            if (activeTab) activeTab.classList.remove('active');
+            if (activeContent) activeContent.classList.remove('active');
+
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById(`content-${tabId}`).classList.add('active');
+            currentTabId = tabId;
+        }
+
+        function refreshTab() {
+            const contentId = `content-${currentTabId}`;
+            const tabUrl = document.getElementById(currentTabId).getAttribute('data-url');
+            document.getElementById(contentId).setAttribute('src', tabUrl);
+        }
+
+        function closeTab(tabId) {
+            const tab = document.getElementById(tabId);
+            const tabContent = document.getElementById(`content-${tabId}`);
+            if (tab.classList.contains('active')) {
+                const nextTab = tab.previousElementSibling || tab.nextElementSibling;
+                if (nextTab) activateTab(nextTab.id);
+            }
+            tab.remove();
+            tabContent.remove();
+        }
+
+        tabList.addEventListener('click', function(event) {
+            const tab = event.target.closest('.tab');
+            if (tab && !tab.classList.contains('active')) {
+                activateTab(tab.id);
+            }
+        });
+    </script>
+</body>
+</html>
