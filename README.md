@@ -1,7 +1,9 @@
-![Screenshot 2024-04-11 7 14 16 PM](https://github.com/linuxfandudeguy/laki/assets/164905463/2340eeb9-e27f-43d4-bd14-3790ea2bdf01)
-Laki is a homemade browser powered by Microsoft Bing.
+Laki is a homemade browser powered by Google.
 
-https://lakibrowser.netlify.app
+![Screenshot 2024-07-16 11 49 07 AM](https://github.com/user-attachments/assets/549d19e8-96ba-478f-afd4-70e902e8206a)
+
+> **NOTE**: Bing is used in this example because Google was suspicious about my activity and it reflects the **first ever version of the browser** (v0.01)
+
 
 laki is also kind of bad so please don't be mean
 
