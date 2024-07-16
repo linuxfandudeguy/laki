@@ -4,111 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laki Browser</title>
-    <!-- Link tags for favicon and Apple touch icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <style>
-        /* Styles for the page content */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Style for the search container */
-        .search-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* Style for the logo image */
-        .logo {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Style for the search input */
-        .search-input {
-            padding: 8px;
-            width: 60%;
-            margin-right: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        /* Style for the search button */
-        .search-button {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        /* Style for the search button on hover */
-        .search-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Style for the iframe */
-        .search-results {
-            margin-top: 20px;
-            width: 100%;
-            height: 80vh;
-            border: none;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="max-w-2xl mx-auto py-8 px-4 text-center">
+        <img src="https://lelbois.nekoweb.org/cdn/laki-logo.svg" alt="Laki Browser Logo" class="mx-auto w-32 h-32">
+        <h1 class="text-4xl font-bold text-gray-800 mt-4">Laki Browser</h1>
+        <p class="text-gray-600 mt-2">The safer, more secure way to browse the web</p>
+        <div class="mt-6">
+            <a href="/browser.html" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Learn More</a>
+        </div>
 
-<div class="container">
-    <!-- Header container -->
-    <div class="search-container">
-        <!-- Logo image -->
-        <img src="https://i.ibb.co/T0LZ9VX/Screenshot-2024-04-11-6-47-38-PM.png" alt="Laki Browser Logo" class="logo">
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Benefits and Disadvantages</h2>
+
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Good</h3>
+                <ul class="list-disc list-inside">
+                    <li class="text-gray-700 mb-2">Is able to access localhost servers.</li>
+                    <li class="text-gray-700 mb-2">Clean look.</li>
+                    <li class="text-gray-700 mb-2">Less Cookies being transferred.</li>
+                    <li class="text-gray-700 mb-2">No need to clear your cache.</li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Bad</h3>
+                <ul class="list-disc list-inside">
+                    <li class="text-gray-700 mb-2">Website access is limited due to CORS restrictions because it accesses websites using iframes. Websites that use CORS should be accessed through <a href="https://uncors.vercel.app/?url=" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">uncors.vercel.app</a>.</li>
+                    <li class="text-gray-700 mb-2">Specific hostnames are inaccessible.</li>
+                    <li class="text-gray-700 mb-2">Searching information with the browser too much will result in Google becoming suspicious about your activity, and we highly recommend just accessing URLs.</li>
+                    <li class="text-gray-700 mb-2">Basic functionality compared to most browsers.</li>
+                </ul>
+            </div>
+        </div>
     </div>
-
-    <!-- Search container -->
-    <div class="search-container">
-        <!-- Search input -->
-        <input type="text" id="searchInput" class="search-input" placeholder="Enter your search query">
-        <!-- Search button -->
-        <button class="search-button" onclick="performSearch()">Search</button>
-    </div>
-
-    <!-- Container for search results -->
-    <div id="searchResultsContainer"></div>
-</div>
-
-<script>
-    function performSearch() {
-        // Get the search query from the input field
-        var query = document.getElementById('searchInput').value;
-        
-        // Create an iframe with the search results page loaded
-        var iframe = document.createElement('iframe');
-        iframe.setAttribute('src', 'https://www.bing.com/search?q=' + encodeURIComponent(query));
-        iframe.setAttribute('class', 'search-results');
-        
-        // Add the iframe to the container
-        var container = document.getElementById('searchResultsContainer');
-        container.innerHTML = '';
-        container.appendChild(iframe);
-    }
-</script>
-
 </body>
 </html>
