@@ -6,7 +6,7 @@ Laki is a homemade browser powered by Google.
 > **NOTE**: Bing is used in this example because Google was suspicious about my activity and it reflects the **first ever version of the browser** (v0.01)
 
 
-laki is still kind of bad so still please don't be mean
+Laki is still kind of bad so still please don't be mean
 
 
 
