@@ -15,7 +15,7 @@ added a copilot
 
 https://lakibrowser.netlify.app/copilot.html
 
-laki got a full ~~fuck~~ing makeover
+laki got a full makeover.k
 
 
 
