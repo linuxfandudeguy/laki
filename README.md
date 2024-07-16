@@ -29,3 +29,7 @@ it now has an entirely brand new logo:
 has tabs now
 
 now has favicon support
+
+# History
+
+[First ver](https://laki-indol.vercel.app/browser.html)
