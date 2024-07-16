@@ -33,4 +33,7 @@ now has favicon support
 # History
 [v0.0.1-alpha](https://laki-indol.vercel.app/alpha.html)
 
-[v0.01](https://laki-indol.vercel.app/browser.html)
+[v0.01](https://laki-indol.vercel.app/old.html)
+
+[v0.02 (marks the day that the entire browser got a makeover)](https://laki-indol.vercel.app/browser.html)
+
