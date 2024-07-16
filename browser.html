@@ -200,8 +200,7 @@
             
             // Check if the URL starts with 'http://' or 'https://'
             if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                // Redirect to CORS proxy with Google search query
-                url = `https://corsproxy.io/?https://www.google.com/search?q=${encodeURIComponent(url)}`;
+                url = 'http://' + url;
             }
             
             createTab(url, url);
@@ -209,11 +208,15 @@
         }
 
         function createTab(url, title, tabId) {
+            // Ensure we don't create a new tab on refresh
+            if (!tabId) {
+                tabId = `tab-${Date.now()}`;
+            }
             const tab = document.createElement('div');
             tab.classList.add('tab');
             tab.textContent = title;
             tab.setAttribute('data-url', url);
-            tab.setAttribute('id', tabId || `tab-${Date.now()}`);
+            tab.setAttribute('id', tabId);
 
             // Create favicon element
             const favicon = document.createElement('img');
@@ -225,18 +228,18 @@
             const closeButton = document.createElement('span');
             closeButton.classList.add('tab-close');
             closeButton.innerHTML = '&times;';
-            closeButton.addEventListener('click', () => closeTab(tabId || tab.id));
+            closeButton.addEventListener('click', () => closeTab(tabId));
             tab.appendChild(closeButton);
 
             tabList.appendChild(tab);
 
             const tabContent = document.createElement('iframe');
             tabContent.classList.add('tab-content');
-            tabContent.setAttribute('id', `content-${tabId || tab.id}`);
+            tabContent.setAttribute('id', `content-${tabId}`);
             tabContent.setAttribute('src', url);
             tabContentContainer.appendChild(tabContent);
 
-            activateTab(tab.id);
+            activateTab(tabId);
         }
 
         function activateTab(tabId) {
@@ -253,8 +256,10 @@
 
         function refreshTab() {
             const contentId = `content-${currentTabId}`;
+            const tabContent = document.getElementById(contentId);
             const tabUrl = document.getElementById(currentTabId).getAttribute('data-url');
-            document.getElementById(contentId).setAttribute('src', tabUrl);
+            // Reloading content for cross-origin iframes
+            tabContent.src = tabUrl;
         }
 
         function closeTab(tabId) {
