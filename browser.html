@@ -194,6 +194,13 @@
         document.getElementById('url-form').addEventListener('submit', navigateToURL);
         refreshButton.addEventListener('click', refreshTab);
 
+        // Event listener for Ctrl + X to close tab
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'x') {
+                closeActiveTab();
+            }
+        });
+
         function navigateToURL(event) {
             if (event) event.preventDefault();
             let url = addressBar.value.trim();
@@ -230,6 +237,9 @@
             closeButton.innerHTML = '&times;';
             closeButton.addEventListener('click', () => closeTab(tabId));
             tab.appendChild(closeButton);
+
+            // Add click listener to activate tab
+            tab.addEventListener('click', () => activateTab(tabId));
 
             tabList.appendChild(tab);
 
@@ -271,6 +281,11 @@
             }
             tab.remove();
             tabContent.remove();
+        }
+
+        // Function to close the currently active tab
+        function closeActiveTab() {
+            closeTab(currentTabId);
         }
 
         tabList.addEventListener('click', function(event) {
