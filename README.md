@@ -31,5 +31,6 @@ has tabs now
 now has favicon support
 
 # History
+[v0.0.1-alpha](https://laki-indol.vercel.app/alpha.html)
 
 [v0.01](https://laki-indol.vercel.app/browser.html)
