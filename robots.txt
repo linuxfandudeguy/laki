@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/  # Disallow access to administrative pages
+Disallow: /private/  # Disallow access to private content
+Disallow: /learn-more.html  # Disallow access to learn-more.html page if not intended for crawling
+Allow: /  # Allow access to all other pages
