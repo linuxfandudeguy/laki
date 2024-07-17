@@ -16,7 +16,6 @@ Raw (like gordon Ramsay): https://raw.githubusercontent.com/linuxfandudeguy/laki
 
 laki got a full makeover
 
-laki now uses google
 
 added even better css
 
